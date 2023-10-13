@@ -2,10 +2,10 @@
 
 ## users テーブル
 
-| Column              | Type   | Options     |
-| ------------------- | ------ | ----------- |
-| name                | string | null: false |
-| email               | string | null: false |
+| Column              | Type   | Options                  |
+| ------------------- | ------ | ------------------------ |
+| name                | string | null: false              |
+| email               | string | null: false, unique:true |
 | encrypted_password  | string | null: false |
 | last_name           | string | null: false |
 | first_name          | string | null: false |
@@ -18,6 +18,7 @@
 
 - has_many :items
 - has_many :pay_forms
+- has_one :purchase information
 
 ## items テーブル
 
@@ -38,6 +39,7 @@
 
 - belongs_to :user
 - has_one :pay_form
+- has_one :user
 
 ## pay_forms テーブル
 
@@ -54,10 +56,15 @@
 
 - belongs_to :user
 - has_one :item
+- has_one :purchase information
 
-## Purchase information テーブル
+## purchase informations テーブル
 | Column         | Type       | Options            |
 | -------------- | ---------- | ------------------ |
 | users          | references | foreign_key: true, null: false  |
 | items          | references | foreign_key: true, null: false  |
 
+### Association
+
+- has_one :user
+- has_one :item
