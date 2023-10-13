@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase information
+- has_many :purchase_information
 
 ## items テーブル
 
@@ -37,7 +37,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase information
+- has_one :purchase_information
 
 ## pay_forms テーブル
 
@@ -53,8 +53,7 @@
 
 ### Association
 
-- has_one :item
-- has_one :purchase_information
+belongs_to :purchase_information
 
 ## purchase informations テーブル
 | Column         | Type       | Options            |
@@ -66,4 +65,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :pay_form
+- has_one :pay_form
