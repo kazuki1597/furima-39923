@@ -17,8 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :pay_forms
-- has_one :purchase information
+- has_many :purchase information
 
 ## items テーブル
 
@@ -38,33 +37,33 @@
 ### Association
 
 - belongs_to :user
-- has_one :pay_form
-- has_one :user
+- has_one :purchase information
 
 ## pay_forms テーブル
 
-| Column         | Type       | Options            |
-| -------------- | ---------- | ------------------ |
-| postal_code    | string     | null: false        |
-| prefecture_id  | integer    | null: false        |
-| city           | string     | null: false        |  
-| addlesses      | string     | null: false        | 
-| building       | string     |                    |
-| phone_number   | string     | null: false        |
+| Column                 | Type       | Options            |
+| ---------------------- | ---------- | ------------------ |
+| postal_code            | string     | null: false        |
+| prefecture_id          | integer    | null: false        |
+| city                   | string     | null: false        |  
+| addlesses              | string     | null: false        | 
+| building               | string     |                    |
+| phone_number           | string     | null: false        |
+| purchase information   | references | foreign_key: true, null: false  |
 
 ### Association
 
-- belongs_to :user
 - has_one :item
-- has_one :purchase information
+- has_one :purchase_information
 
 ## purchase informations テーブル
 | Column         | Type       | Options            |
 | -------------- | ---------- | ------------------ |
-| users          | references | foreign_key: true, null: false  |
-| items          | references | foreign_key: true, null: false  |
+| user          | references | foreign_key: true, null: false  |
+| item          | references | foreign_key: true, null: false  |
 
 ### Association
 
-- has_one :user
-- has_one :item
+- belongs_to :user
+- belongs_to :item
+- belongs_to :pay_form
