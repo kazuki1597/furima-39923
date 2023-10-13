@@ -5,7 +5,7 @@
 | Column              | Type   | Options     |
 | ------------------- | ------ | ----------- |
 | name                | string | null: false |
-| email               | string | unique:true |
+| email               | string | null: false |
 | encrypted_password  | string | null: false |
 | last_name           | string | null: false |
 | first_name          | string | null: false |
@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :pay_form
+- has_many :pay_forms
 
 ## items テーブル
 
@@ -31,33 +31,33 @@
 | prefecture_id                | integer     | null: false |
 | scheduled_delivery_id        | integer     | null: false |
 | price                        | integer     | null: false |
-| user                         | references  | foreign_key: true  |
-| pay_form                     | references  | foreign_key: true |
+| user                         | references  | foreign_key: true, null: false   |
+
 
 ### Association
 
-- belongs_to :users 
+- belongs_to :user
 - has_one :pay_form
 
-## pay_form テーブル
+## pay_forms テーブル
 
 | Column         | Type       | Options            |
 | -------------- | ---------- | ------------------ |
 | postal_code    | string     | null: false        |
-| prefecture_id  | Intege     | null: false        |
-| city           | string     | null: false        |
-| addlesses      | string     | null: false        |
-| building       | string     | null: false        |
+| prefecture_id  | integer    | null: false        |
+| city           | string     | null: false        |  
+| addlesses      | string     | null: false        | 
+| building       | string     |                    |
 | phone_number   | string     | null: false        |
 
 ### Association
 
-- belongs_to :users
-- has_one :items
+- belongs_to :user
+- has_one :item
 
-## 購入情報 テーブル
+## Purchase information テーブル
 | Column         | Type       | Options            |
 | -------------- | ---------- | ------------------ |
-| users          | references | foreign_key: true  |
-| items          | references | foreign_key: true  |
+| users          | references | foreign_key: true, null: false  |
+| items          | references | foreign_key: true, null: false  |
 
