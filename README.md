@@ -17,7 +17,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_information
+- has_many :purchase_informations
 
 ## items テーブル
 
