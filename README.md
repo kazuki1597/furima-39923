@@ -49,13 +49,13 @@
 | addlesses              | string     | null: false        | 
 | building               | string     |                    |
 | phone_number           | string     | null: false        |
-| purchase information   | references | foreign_key: true, null: false  |
+| purchase_information   | references | foreign_key: true, null: false  |
 
 ### Association
 
 belongs_to :purchase_information
 
-## purchase informations テーブル
+## purchase_informations テーブル
 | Column         | Type       | Options            |
 | -------------- | ---------- | ------------------ |
 | user          | references | foreign_key: true, null: false  |
