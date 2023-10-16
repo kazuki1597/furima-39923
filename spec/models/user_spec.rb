@@ -6,6 +6,14 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    # describeテスト対象の「クラス」や「メソッド」
+    context '新規登録できる場合' do
+      it "nameとemail、passwordとpassword_confirmationなどが存在すれば登録できる" do
+        expect(@user).to be_valid
+        # expect機能
+      end
+    end
+    context 'ユーザー新規登録' do
     it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
     end
     it 'nameが空では登録できない' do
