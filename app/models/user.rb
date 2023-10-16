@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :last_name, :first_name, :last_name_kana, :first_name_kana, :birth_date, presence: true
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
-  kanji_name = /\A[ぁ-んァ-ン一-龥々]+\z/
+  kanji_name = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   # 1字以上の全角のみ
   validates_format_of :first_name,:last_name, with: kanji_name, message: '設定してください'
   kana_name = /\A[ァ-ヶー－]+\z/
