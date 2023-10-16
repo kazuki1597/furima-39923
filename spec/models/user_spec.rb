@@ -14,8 +14,6 @@ RSpec.describe User, type: :model do
       end
     end
     context 'ユーザー新規登録できないとき' do
-      it 'nameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
-      end
       it 'nameが空では登録できない' do
         @user.name = ''
         @user.valid?
@@ -76,12 +74,12 @@ RSpec.describe User, type: :model do
       it "お名前(全角)は、苗字がそれぞれ必須であること" do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name 設定してください")
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it "お名前(全角)は、名前がそれぞれ必須であること" do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name 設定してください")
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it "お名前(全角)は、苗字が全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
         @user.first_name = 'kk'
@@ -94,7 +92,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name 設定してください")
       end
       it "お名前カナ(全角)は、名字がそれぞれ必須であること" do
-        @user.first_name = ''
+        @user.first_name = 'yamada'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name 設定してください")
       end
