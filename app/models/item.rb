@@ -10,4 +10,9 @@ class Item < ApplicationRecord
     belongs_to :shipping_free_status
     belongs_to :prefecture
     belongs_to :scheduled_delivery
+    hannkakukana =  /\A[0-9]+\z/ 
+    validates_format_of :price, with:  hannkakukana, message: '半角数値で設定してください'
+    validates :price, numericality: { in: 300..9999999 }
+    # validates :price, numericality: { in: 1..299}
+    validates :price, numericality: { only_integer: true }
 end
