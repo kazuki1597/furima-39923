@@ -10,7 +10,6 @@ RSpec.describe Item, type: :model do
     context '出品登録できる場合' do
       it "imageとname、info、category_idなど出品に関する入力が存在すれば登録できる" do
         expect(@item).to be_valid
-        # expect機能
       end
     end
     context 'ユーザーが出品登録ができないとき' do
@@ -126,5 +125,3 @@ end
 
 
 
-
-# - [ ] 価格は半角数値のみ保存可能であること。
