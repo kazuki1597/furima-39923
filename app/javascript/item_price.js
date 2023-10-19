@@ -6,7 +6,7 @@ window.addEventListener('turbo:load', () => {
       const addTaxDom = document.getElementById("calculateFee");
       
       // 価格 * 0.1 で計算し、小数点以下を切り捨てて整数に変換
-      const calculatedTax = parseInt(inputValue * 0.1);
+      const calculatedTax = Math.floor(inputValue * 0.1);
       
       addTaxDom.innerHTML = calculatedTax;
 

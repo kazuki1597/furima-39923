@@ -62,21 +62,57 @@ RSpec.describe Item, type: :model do
       it '価格は、¥299以下は登録できない' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
       end
       it '価格は、¥10,000,000以上は登録できない' do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include("Price は ¥300~9,999,999 の間で半角数字で指定してください")
       end
       it '価格は半角数値以外は登録できない' do
-        @item.price = '５００'
+        @item.price = 'aaaa'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category １以外の値を選択してください")
+      end
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.sales_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sales status １以外の値を選択してください")
+      end
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.shipping_free_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping free status １以外の値を選択してください")
+      end
+      it '配送元の地域に「---」が選択されている場合は出品できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture １以外の値を選択してください")
+      end
+      it '配送までの日数に「---」が選択されている場合は出品できない' do
+        @item.scheduled_delivery_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Scheduled delivery １以外の値を選択してください")
+      end
+        it 'userが紐付いていなければ出品できない'do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
 end
+
+
+
+
+
+
 
 
 
