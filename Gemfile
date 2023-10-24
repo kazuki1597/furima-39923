@@ -81,4 +81,4 @@ gem 'devise'
 gem 'pry-rails'
 gem 'faker'
 gem 'active_hash'
-
+gem 'payjp'
