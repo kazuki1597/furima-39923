@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :items, only: [:new,:create,:show,:edit,:update,:destroy] do
     resources :articles
-    resources :purchase_informations, only: [:index,:create]
   end
 end
