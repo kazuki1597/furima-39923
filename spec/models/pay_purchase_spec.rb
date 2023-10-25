@@ -40,7 +40,7 @@ RSpec.describe PayPurchase, type: :model do
         expect(@tesut.errors.full_messages).to include("Postal code 郵便番号を入力してください")
       end
       it '都道府県が空で登録できない' do
-        @tesut.prefecture_id = ''
+        @tesut.prefecture_id = 0
         @tesut.valid?
         expect(@tesut.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -69,11 +69,21 @@ RSpec.describe PayPurchase, type: :model do
       @tesut.valid?
       expect(@tesut.errors.full_messages).to include("Phone number 電話番号を入力してください")
       end
-      it '電話番号が空で登録できない' do
+      it '電話番号を全角で登録できない' do
         @tesut.phone_number = '１１１１１１１１１１'
         @tesut.valid?
         expect(@tesut.errors.full_messages).to include("Phone number 電話番号を入力してください")
       end
+      it 'user_idが空だと登録できない' do
+        @tesut.user_id = nil
+        @tesut.valid?
+        expect(@tesut.errors.full_messages).to include("User can't be blank")
+        end
+        it 'item_idが空だと登録できない' do
+            @tesut.item_id = nil
+            @tesut.valid?
+            expect(@tesut.errors.full_messages).to include("Item can't be blank")
+            end
     end
   end
 end

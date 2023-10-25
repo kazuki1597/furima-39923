@@ -1,18 +1,18 @@
 class PurchaseInformationsController < ApplicationController
     # まずはログインしてください
+    before_action :set, only: [:index,:create]
     before_action :authenticate_user!
     before_action :move_to_root 
     before_action :move_to_root_sold 
 
     def index
-        @item = Item.find(params[:item_id])
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
         @pay_form = PayPurchase.new
 
     end
 
     def create
         #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
-        @item = Item.find(params[:item_id])
         @pay_form = PayPurchase.new(purchase_information_params) 
 
         if @pay_form.valid?
@@ -21,6 +21,7 @@ class PurchaseInformationsController < ApplicationController
            #  PayPurchaseモデルのdef saveのメソッドを呼び出し
           return redirect_to root_path
         else
+          gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
           render :index, status: :unprocessable_entity
         end
         
@@ -35,7 +36,7 @@ class PurchaseInformationsController < ApplicationController
 
   
   def pay_item
-    Payjp.api_key = 'sk_test_59e3754db813f5634defc402'  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item[:price],  # 商品の値段
       card: purchase_information_params[:token],    # カードトークン
@@ -61,6 +62,10 @@ class PurchaseInformationsController < ApplicationController
       redirect_to root_path
     end 
   end
+
+  def set
+    @item = Item.find(params[:item_id])
+end
 
 end
 # parameter{モデル名(form_withで記述していただいた mode: @~~~で定義していただいたモデルの名前が必要)
