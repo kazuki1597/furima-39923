@@ -31,4 +31,3 @@ const pay = () => {
   };
   
   window.addEventListener("turbo:load", pay);
-  gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
