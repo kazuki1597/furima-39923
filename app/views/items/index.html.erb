@@ -129,7 +129,7 @@
     <ul class='item-lists'>
 
             <%# 真偽判定メソッド  %>
-        <% if @items.present? %> 
+      <% if @items.present? %> 
         <% @items.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
@@ -141,9 +141,7 @@
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div> 
-          
           <% end %> 
-        <% end %>  
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -159,6 +157,7 @@
         </div>
         <% end %>
       </li>
+       <% end %>  
       <% else %>
       <li class='list'>
         <%= link_to '#' do %>
