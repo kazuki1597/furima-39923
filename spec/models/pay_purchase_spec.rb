@@ -59,12 +59,12 @@ RSpec.describe PayPurchase, type: :model do
         @tesut.valid?
         expect(@tesut.errors.full_messages).to include("Phone number 電話番号を入力してください")
       end
-      it '電話番号9桁以下で登録できない' do
+      it '電話番号9桁以下では登録できない' do
         @tesut.phone_number = '111111111'
         @tesut.valid?
         expect(@tesut.errors.full_messages).to include("Phone number 電話番号を入力してください")
       end
-      it '電話番号が空で登録できない' do
+      it '電話番号12桁以上では登録できない' do
       @tesut.phone_number = '111111111111'
       @tesut.valid?
       expect(@tesut.errors.full_messages).to include("Phone number 電話番号を入力してください")
