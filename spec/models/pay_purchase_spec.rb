@@ -15,11 +15,11 @@ RSpec.describe PayPurchase, type: :model do
         expect(@tesut).to be_valid
       end
 
-          it "建物名が空でも登録できる" do
-            @tesut.building  =  ''
-            expect(@tesut).to be_valid
-          end
-        end
+      it "建物名が空でも登録できる" do
+        @tesut.building  =  ''
+        expect(@tesut).to be_valid
+      end
+    end
 
     context 'ユーザーが出品物を購入できない場合' do
       it 'tokenが空で登録' do

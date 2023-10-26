@@ -46,8 +46,6 @@ class PurchaseInformationsController < ApplicationController
 
   #出品者だった場合はトップページへ遷移
   def move_to_root
-    # @itemを定義しないと中身がなかったから
-    @item = Item.find(params[:item_id])
     # ログイン者と出品者だったら
     if user_signed_in? && current_user.id == @item.user_id 
       redirect_to root_path
@@ -57,7 +55,7 @@ class PurchaseInformationsController < ApplicationController
     #商品が売却済みだった場合はトップページへ遷移
     # if文はtrueのみ中身の記述が読み込まれる
   def move_to_root_sold
-    @item = Item.find(params[:item_id])
+    # @itemを定義しないと中身がなかったから
     if user_signed_in? && current_user.id != @item.user_id && @item.purchase_information.present?
       redirect_to root_path
     end 
