@@ -14,9 +14,7 @@ RSpec.describe PayPurchase, type: :model do
       it "カード情報や出品先など購入に必要な入力が存在すれば登録できる" do
         expect(@tesut).to be_valid
       end
-    end
 
-        context '建物名が任意であること' do
           it "建物名が空でも登録できる" do
             @tesut.building  =  ''
             expect(@tesut).to be_valid
