@@ -25,7 +25,7 @@
       </span>
     </div>
 
-      <% if user_signed_in? && @item.purchase_information.empty? %> 
+      <% if user_signed_in? && @item.purchase_information.nil? %> 
 
         <%# ==は比較演算子 %>
         <% if current_user.id == @item.user.id %>
