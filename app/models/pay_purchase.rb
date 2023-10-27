@@ -9,7 +9,7 @@ class PayPurchase
         validates :user_id,:item_id
         validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: '郵便番号を入力してください'}
         validates :phone_number, format: { with: /\A\d{10,11}\z/ , message:'電話番号を入力してください' }
-        validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+        validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
         #カラム名でバリデーションのチェック
 
       end
